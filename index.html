@@ -3,11 +3,35 @@
 
 <head>
     <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body{
+            font-size:1.5em;
+        }
+    </style>
     <title> Hello Fardim</title>
 </head>
 
-<body>
-    <h1>Hello Fardim</h1>
+<body ng-app="myFirstApp">
+    <!--<h1>Low cohesion and tight coupling</h1>
+    <div id="nameCalculator">
+        <div>
+            Your Name : <input type="text" id="name">
+        </div>
+        <div id="output"></div>
+    </div>-->
+    <div ng-controller="myFirstCotroller">
+        <h1>Name Calculator</h1>
+        <input type="text" ng-model="name" ng-keyup="displayNameVal();" ng-blur="upper();">
+        <div>
+            The value of ur name is: {{totalNameVal}}
+        </div>
+        <div>
+            <!--<button ng-click="feedFardim();">Feed Fardim</button>
+            <img ng-src="images/Fardim_{{stateOfBeing}}.jpg" width="200px" height="200px">-->
+        </div>
+    </div>
 </body>
 
 </html>
