@@ -32,19 +32,39 @@
 
     angular.module('myFirstApp',[])
 
-    .controller('myFirstCotroller',DIcontroller );
-    DIcontroller.$inject = ['$scope','$filter'];
-    function DIcontroller($scope, $filter){
+    .controller('myFirstCotroller',DIcontroller )
+    .filter('loves', lovesFilter).filter('truth', TruthFilter);
+
+    DIcontroller.$inject = ['$scope','$filter', 'lovesFilter'];
+    function DIcontroller($scope, $filter, lovesFilter){
         $scope.name = "";
         $scope.totalNameVal = 0;
         $scope.stateOfBeing = 'hungry';
+        $scope.increment = 0;
+        $scope.upcounter = function(){
+            $scope.increment++;
+        }
+        $scope.$watch('increment', function(newvalue, oldvalue){
+            console.log("increment old value", oldvalue);
+            console.log("increment new value", newvalue);
+        })
         $scope.displayNameVal = function(){
             var nameval = calcNameValFromString($scope.name);
             $scope.totalNameVal = nameval;
         };
         $scope.feedFardim = function(){
             $scope.stateOfBeing = 'fed';
-        }
+        };
+
+        $scope.sayLovesMsg =function(){
+            var msg = "Fardim likes to eat biscuit";
+            msg = lovesFilter(msg);
+            return msg;
+        };
+        $scope.sayMsg =function(){
+            var msg = "Fardim likes to eat biscuit";
+            return msg;
+        };
 
         $scope.upper = function(){
             var upCase = $filter('uppercase');
@@ -58,5 +78,22 @@
             }
             return totalStringVal;
         }
+    }
+
+    function TruthFilter(){
+        return function(input, target, replace){
+            input = input || "";
+            input = input.replace(target, replace);
+            return input;
+        }
+    }
+
+    function lovesFilter(){
+        return function(input){
+            input = input || "";
+            input = input.replace("likes", "loves");
+            return input;
+        };
+
     }
 })()

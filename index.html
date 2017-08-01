@@ -26,10 +26,15 @@
         <input type="text" ng-model="name" ng-keyup="displayNameVal();" ng-blur="upper();">
         <div>
             The value of ur name is: {{totalNameVal}}
+            Original msg : {{sayMsg() }}
+            modifies msg : {{sayLovesMsg() }} <br/>
+            Truth : {{sayMsg() | truth:'biscuits':'chocholate'}} <br/>
+            Big Truth : {{sayMsg() | truth:'biscuit':'chocholate' | uppercase}}
         </div>
         <div>
             <!--<button ng-click="feedFardim();">Feed Fardim</button>
             <img ng-src="images/Fardim_{{stateOfBeing}}.jpg" width="200px" height="200px">-->
+            <button ng-click="upcounter()">incremental button</button>
         </div>
     </div>
 </body>
