@@ -31,7 +31,6 @@
     'use strict';
 
     angular.module('myFirstApp',[])
-
     .controller('myFirstCotroller',DIcontroller )
     .filter('loves', lovesFilter).filter('truth', TruthFilter);
 
@@ -55,7 +54,9 @@
         $scope.feedFardim = function(){
             $scope.stateOfBeing = 'fed';
         };
-
+        $scope.showNumberofWatchers = function(){
+            console.log("No of watchers : ",$scope.watchersCount);
+        }
         $scope.sayLovesMsg =function(){
             var msg = "Fardim likes to eat biscuit";
             msg = lovesFilter(msg);
